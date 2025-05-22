@@ -16,20 +16,29 @@ export function mergeSort(arr) {
   
   let sorted = []; 
   
+  let leftPointer = 0;
+  let rightPointer = 0; 
+  
   while (true) {
-    if (left.length === 0) {
-      sorted = sorted.concat(right);
+
+    if (leftPointer === left.length) {
+      sorted = sorted.concat(right.slice(rightPointer));
       break;
-    } else if (right.length === 0) {
-      
-      sorted = sorted.concat(left);
+    } else if (rightPointer === right.length) {
+      sorted = sorted.concat(left.slice(leftPointer));
       break;
     }
     
-    if (left[0] < right[0]) {
-      sorted.push(left.shift());
+    if (left[leftPointer] < right[rightPointer]) {
+      sorted.push(left[leftPointer]);
+      leftPointer++;
+    } else if (right[rightPointer] < left[leftPointer]) {
+      sorted.push(right[rightPointer]);
+      rightPointer++;
     } else {
-      sorted.push(right.shift());
+      sorted.push(left[leftPointer]);
+      leftPointer++;
+      rightPointer++;
     }
   }
   
