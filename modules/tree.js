@@ -32,4 +32,33 @@ export class Tree {
 
     return root;
   }
+
+  insert(value) {
+    let node = new Node();
+    node.data = value;
+
+    let curr = this.root;
+
+    while (true) {
+      if (curr.data === value) {
+        throw new Error("Value already in tree");
+      }
+
+      if (value < curr.data) {
+        if (curr.left === null) {
+          curr.left = node;
+          return;
+        }
+
+        curr = curr.left;
+      } else if (value > curr.data) {
+        if (curr.right === null) {
+          curr.right = node;
+          return;
+        }
+
+        curr = curr.right;
+      }
+    }
+  }
 }
