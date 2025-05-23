@@ -131,4 +131,16 @@ export class Tree {
       this.root = replacementChild;
     }
   }
+
+  find(value) {
+    let curr = this.root;
+
+    while (curr !== null) {
+      if (curr.data === value) return curr;
+      
+      curr = (value < curr.data) ? curr.left : curr.right;
+    }
+
+    return null;
+  }
 }
