@@ -177,4 +177,14 @@ export class Tree {
     this.preOrder(callback, node.left);
     this.preOrder(callback, node.right);
   }
+
+  postOrder(callback, node = this.root) {
+    if (!callback) throw new Error("Callback required");
+
+    if (node === null) return;
+
+    this.postOrder(callback, node.left);
+    this.postOrder(callback, node.right);
+    callback(node);
+  }
 }
