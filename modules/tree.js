@@ -143,4 +143,18 @@ export class Tree {
 
     return null;
   }
+
+  levelOrder(callback) {
+    if (!callback) throw new Error("Callback required");
+
+    let queue = [this.root];
+
+    while (queue.length !== 0) {
+      let node = queue.shift();
+      callback(node);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+  }
 }
