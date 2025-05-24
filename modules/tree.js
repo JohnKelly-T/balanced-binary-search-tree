@@ -157,4 +157,14 @@ export class Tree {
       if (node.right) queue.push(node.right);
     }
   }
+
+  inOrder(callback, node = this.root) {
+    if (!callback) throw new Error("Callback required");
+
+    if (node === null) return;
+
+    this.inOrder(callback, node.left);
+    callback(node);
+    this.inOrder(callback, node.right);
+  }
 }
