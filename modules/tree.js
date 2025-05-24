@@ -230,4 +230,20 @@ export class Tree {
 
     return (target === null) ? null : depthCount;
   }
+
+  isBalanced(node = this.root) {
+
+    // base case
+    if (node === null) return true;
+    
+    let leftHeight = this.heightRecur(node.left);
+    let rightHeight = this.heightRecur(node.right);
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      return false;
+    } 
+
+    // recursively check if each node is balanced
+    return this.isBalanced(node.left) && this.isBalanced(node.right);
+  }
 }
