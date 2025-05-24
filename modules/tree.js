@@ -246,4 +246,14 @@ export class Tree {
     // recursively check if each node is balanced
     return this.isBalanced(node.left) && this.isBalanced(node.right);
   }
+
+  rebalance() {
+    let newArr = [];
+
+    this.inOrder((node) => {
+      newArr.push(node.data);
+    })
+
+    this.root = this.buildTree(newArr);
+  }
 }
