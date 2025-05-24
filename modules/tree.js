@@ -187,4 +187,31 @@ export class Tree {
     this.postOrder(callback, node.right);
     callback(node);
   }
+
+  height(value) {
+    let target = this.root;
+
+    // traverse to target node
+    while (target !== null) {
+      if (target.data === value) {
+        break;
+      }
+
+      target = (value < target.data) ? target.left : target.right;
+    }
+
+    // if target not found
+    if (target === null) return null;
+
+    return this.heightRecur(target);
+  }
+
+  heightRecur(node) {
+    if (node === null) return -1;
+
+    let heightLeft = this.heightRecur(node.left);
+    let heightRight = this.heightRecur(node.right);
+
+    return 1 + Math.max(heightLeft, heightRight);
+  }
 }
