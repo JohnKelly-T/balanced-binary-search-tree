@@ -214,4 +214,20 @@ export class Tree {
 
     return 1 + Math.max(heightLeft, heightRight);
   }
+
+  depth(value) {
+    let target = this.root;
+    let depthCount = 0;
+
+    while (target !== null) {
+      if (target.data === value) {
+        break;
+      }
+
+      target = (value < target.data) ? target.left : target.right;
+      depthCount++;
+    }
+
+    return (target === null) ? null : depthCount;
+  }
 }
